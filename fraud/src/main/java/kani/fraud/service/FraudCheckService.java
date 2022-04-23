@@ -19,7 +19,7 @@ public class FraudCheckService {
         this.fraudCheckHistoryRepository = fraudCheckHistoryRepository;
     }
 
-    public FraudResponse isFraud(Long customerId) {
+    public FraudResponse  isFraud(Long customerId) {
         FraudCheckHistory fraudCheckHistory = FraudCheckHistory.builder().customerId(customerId)
                 .createdAt(LocalDateTime.now()).
                 isFraudster(false).build();

@@ -30,7 +30,7 @@ public class CustomerService {
                 password(customerRegistrationRequest.getPassword()).build();
          final Customer customerSaved = customerRepository.saveAndFlush(customer);
         final FraudResponse fraudResponse = restTemplate.
-                getForObject("http://localhost:8091/api/fraud-check/{customerId}", FraudResponse.class, customerSaved.getId());
+                getForObject("http://FRAUD/api/fraud-check/{customerId}", FraudResponse.class, customerSaved.getId());
         if( fraudResponse.getFraud()){
             throw new IllegalArgumentException("It's Fraud");
         }

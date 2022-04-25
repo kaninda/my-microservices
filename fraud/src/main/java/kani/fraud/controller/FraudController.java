@@ -19,7 +19,7 @@ public class FraudController {
         this.fraudService = fraudService;
     }
 
-    @GetMapping(value ="fraud-check/{customerId}")
+    @GetMapping(value ="fraud/{customerId}")
     public ResponseEntity<FraudResponse>  checkFraud (@PathVariable Long customerId) {
         log.info("checking the user id with id {}");
 

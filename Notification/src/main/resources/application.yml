@@ -1,10 +1,10 @@
 server:
-  port: 8091
+  port: 8092
 spring:
   application:
-    name: fraud
+    name: notification
   datasource:
-    url: jdbc:postgresql://localhost:5432/fraud
+    url: jdbc:postgresql://localhost:5432/notification
     username: kani
     password: password
   jpa:

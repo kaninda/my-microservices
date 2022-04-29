@@ -5,14 +5,14 @@ import kani.fraud.repository.FraudCheckHistoryRepository;
 import kani.fraud.tools.FraudResponse;
 import kani.fraud.tools.NotificationRequest;
 import kani.fraud.tools.NotificationType;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
 import java.time.LocalDateTime;
 
-
 @Service
+@Slf4j
 public class FraudCheckService {
 
     private final FraudCheckHistoryRepository fraudCheckHistoryRepository;

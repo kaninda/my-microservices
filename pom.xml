@@ -14,6 +14,7 @@
         <module>eureka-server</module>
         <module>notification</module>
         <module>gateway</module>
+        <module>ampq</module>
     </modules>
 
     <name>my-microservices</name>

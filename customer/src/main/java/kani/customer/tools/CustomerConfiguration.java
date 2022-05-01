@@ -13,8 +13,8 @@ public class CustomerConfiguration {
     @Value("${rabbitmq.exchanges.internal}")
     private String internalExchanges;
 
-    @Value("${rabbitmq.queue.notification}")
-    private String notificationQueue;
+    @Value("${rabbitmq.queue.customer}")
+    private String customerQueue;
 
     @Value("{rabbitmq.routing-key.internal-notification}")
     private String internalNotificationRoutingKey;
@@ -24,8 +24,8 @@ public class CustomerConfiguration {
         return internalExchanges;
     }
 
-    public String getNotificationQueue() {
-        return notificationQueue;
+    public String getCustomerQueue() {
+        return customerQueue;
     }
 
     public String getInternalNotificationRoutingKey() {
@@ -39,7 +39,7 @@ public class CustomerConfiguration {
 
     @Bean
     public Queue queue() {
-        return new Queue(getNotificationQueue());
+        return new Queue(getCustomerQueue());
     }
 
     @Bean

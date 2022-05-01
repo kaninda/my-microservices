@@ -13,8 +13,8 @@ public class FraudConfiguration {
     @Value("${rabbitmq.exchanges.internal}")
     private String internalExchanges;
 
-    @Value("${rabbitmq.queue.notification}")
-    private String notificationQueue;
+    @Value("${rabbitmq.queue.fraud}")
+    private String fraudQueue;
 
     @Value("{rabbitmq.routing-key.internal-notification}")
     private String internalNotificationRoutingKey;
@@ -23,8 +23,8 @@ public class FraudConfiguration {
         return internalExchanges;
     }
 
-    public String getNotificationQueue() {
-        return notificationQueue;
+    public String getFraudQueue() {
+        return fraudQueue;
     }
 
     public String getInternalNotificationRoutingKey() {
@@ -38,7 +38,7 @@ public class FraudConfiguration {
 
     @Bean
     public Queue queue() {
-        return new Queue(getNotificationQueue());
+        return new Queue(getFraudQueue());
     }
 
     @Bean

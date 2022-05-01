@@ -1,6 +1,6 @@
 package kani.customer.service;
 
-import kani.amqp.module.RabbitMqMessageProducer;
+import kani.amqp.RabbitMqMessageProducer;
 import kani.customer.model.Customer;
 import kani.customer.repository.CustomerRepository;
 import kani.customer.tools.*;

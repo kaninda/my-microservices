@@ -1,4 +1,4 @@
-package kani.amqp.module;
+package kani.amqp;
 
 import lombok.AllArgsConstructor;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;

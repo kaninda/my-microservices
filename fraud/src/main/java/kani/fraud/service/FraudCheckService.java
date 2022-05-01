@@ -1,6 +1,6 @@
 package kani.fraud.service;
 
-import kani.amqp.module.RabbitMqMessageProducer;
+import kani.amqp.RabbitMqMessageProducer;
 import kani.fraud.model.FraudCheckHistory;
 import kani.fraud.repository.FraudCheckHistoryRepository;
 import kani.fraud.tools.FraudConfiguration;

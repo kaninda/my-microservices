@@ -1,4 +1,4 @@
-package kani.amqp.module;
+package kani.amqp;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

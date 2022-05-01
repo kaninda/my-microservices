@@ -1,4 +1,4 @@
-package kani.customer.tools;
+package kani.fraud.tools;
 
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-public class CustomerConfiguration {
+public class FraudConfiguration {
 
     @Value("${rabbitmq.exchanges.internal}")
     private String internalExchanges;
@@ -18,7 +18,6 @@ public class CustomerConfiguration {
 
     @Value("{rabbitmq.routing-key.internal-notification}")
     private String internalNotificationRoutingKey;
-
 
     public String getInternalExchanges() {
         return internalExchanges;
@@ -50,10 +49,9 @@ public class CustomerConfiguration {
                 .with(getInternalNotificationRoutingKey())
                 .noargs();
     }
-
     @Bean
     @LoadBalanced
-    public RestTemplate buildRestTemplate () {
+    public RestTemplate restTemplate(){
         return new RestTemplate();
     }
 }

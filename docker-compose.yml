@@ -12,6 +12,7 @@ services:
       - "5432:5432"
     networks:
       - postgres
+      - spring
     restart: unless-stopped
 
   pgadmin:
@@ -34,16 +35,95 @@ services:
     container_name: zipkin
     ports:
       - "9411:9411"
+    networks:
+      - spring
+
+  eureka-server:
+    image: arnaudkaninda/eureka-server:latest
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    depends_on:
+      - zipkin
+    networks:
+      - spring
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  gateway:
+    image: arnaudkaninda/gateway:latest
+    container_name: gateway
+    ports:
+      - "8093:8093"
+    networks:
+      - spring
+    depends_on:
+      - zipkin
+      - eureka-server
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  customer:
+    image: arnaudkaninda/customer:latest
+    container_name: customer
+    ports:
+      - "8090:8090"
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - zipkin
+      - eureka-server
+      - postgres
+      - rabbitmq
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  fraud:
+    image: arnaudkaninda/fraud:latest
+    container_name: fraud
+    ports:
+      - "8091:8091"
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - zipkin
+      - eureka-server
+      - postgres
+      - rabbitmq
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  notification:
+    image: arnaudkaninda/notification:latest
+    container_name: notification
+    ports:
+      - "8092:8092"
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - zipkin
+      - eureka-server
+      - postgres
+      - rabbitmq
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
 
   rabbitmq:
     image: rabbitmq:3.9.16-management-alpine
     container_name: rabbitmq
+    networks:
+      - spring
     ports:
       - "5672:5672"
       - "15672:15672"
 
 networks:
   postgres:
+    driver: bridge
+  spring:
     driver: bridge
 
 volumes:

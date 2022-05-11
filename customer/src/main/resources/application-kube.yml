@@ -33,3 +33,7 @@ rabbitmq:
     customer: customer.queue
   routing-keys:
     internal-notification: internal.notification.routing-key
+
+client:
+  fraud:
+    url: http://fraud

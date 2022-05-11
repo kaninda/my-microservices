@@ -2,7 +2,6 @@ package kani.customer.tools;
 
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -52,7 +51,6 @@ public class CustomerConfiguration {
     }
 
     @Bean
-    @LoadBalanced
     public RestTemplate buildRestTemplate () {
         return new RestTemplate();
     }

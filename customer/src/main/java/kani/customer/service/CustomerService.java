@@ -6,6 +6,7 @@ import kani.customer.repository.CustomerRepository;
 import kani.customer.tools.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,6 +19,8 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final RabbitMqMessageProducer rabbitMqMessageProducer;
     private final CustomerConfiguration customerConfiguration;
+    @Value("${client.fraud.url}")
+    private String fraudUrl;
 
     @Autowired
     public CustomerService(
@@ -49,7 +52,7 @@ public class CustomerService {
     private void sentToFraudService(Customer customerSaved) {
         final FraudResponse fraudResponse = restTemplate.
                 getForObject(
-                        "http://FRAUD/api/fraud/{customerId}",
+                        fraudUrl.concat("/api/fraud/{customerId}"),
                         FraudResponse.class,
                         customerSaved.getCustomerId()
                 );

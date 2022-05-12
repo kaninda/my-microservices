@@ -12,7 +12,7 @@ import org.springframework.context.annotation.PropertySources;
 })
 @EnableEurekaClient
 @PropertySources(value = {
-        @PropertySource("classpath:client-${spring.profiles.active}.properties"),
+        @PropertySource("classpath:client-${spring.profiles.active}.properties")
 })
 public class CustomerApplication {
     public static  void main (String args []){
